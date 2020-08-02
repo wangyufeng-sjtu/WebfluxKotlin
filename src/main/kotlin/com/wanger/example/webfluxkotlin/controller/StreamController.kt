@@ -24,11 +24,11 @@ class StreamController{
     fun multipleElement(content:String): Flow<String>{
         val scope = CoroutineScope(Dispatchers.IO)
         val start = System.currentTimeMillis()
-        var jobList = ArrayList<Deferred<String>>()
+        val jobList = ArrayList<Deferred<String>>(8)
         val result = flow{
             for(i in 1..3){
                 val temp = scope.async {
-                    delay(10000L + 2000L*i)
+                    delay(1000L + 2000L*i)
                     "Received content: $content $i \n"
                 }
                 jobList.add(temp)
